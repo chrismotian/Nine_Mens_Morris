@@ -1,3 +1,5 @@
+const mySound = document.getElementById("turnSound");
+
 var canvas = new fabric.Canvas('c');
 
 var imgElement = document.getElementById('bord');
@@ -112,6 +114,7 @@ function createField(myLeft,myTop,fieldNumber){
     });
     
     circle.on('mouseup',function(){
+        mySound.play();
     
         if(((phase == 'verschiebenLegen' && fieldAdjacentMatrix[fieldNumber][fieldWeggenommen] == 1) || phase == 'endgameLegen') && this.fill == 'black' && fieldWeggenommen != fieldNumber){
             if (isTriple(turnColor,fieldNumber) && !allOppositeColorTriple(turnColor)){      
