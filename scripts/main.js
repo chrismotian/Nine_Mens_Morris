@@ -42,6 +42,12 @@ var phase = 'legen';
 //Wichtig für die Phase verschiebenLegen. Bestimmt die möglichen nächsten Positionen
 var fieldWeggenommen;
 
+var LineArray = new Array();
+LineArray.push(createLine(29,24,329,24),createLine(29,24,29,323),createLine(29,323,329,323),createLine(329,24,329,323),createLine(81,74,279,74),createLine(81,74,81,272),createLine(81,272,279,272),createLine(279,74,279,272),createLine(130,124,130,223),createLine(130,124,228,124),createLine(130,223,228,223),createLine(228,124,228,223),createLine(180,24,180,124),createLine(29,174,130,174),createLine(228,174,329,174),createLine(179,223,180,323));
+LineArray.forEach(function(item,index,array){
+    canvas.add(item);
+});
+
 var fieldArray = new Array();
 fieldArray.push(createField(29,24,0),createField(180,24,1),createField(329,24,2),createField(81,74,3),createField(180,74,4),createField(279,74,5),createField(130,124,6),createField(179,124,7),createField(228,124,8),createField(29,174,9),createField(81,174,10),createField(130,174,11),createField(228,174,12),createField(279,174,13),createField(329,174,14),createField(130,223,15),createField(179,223,16),createField(228,223,17),createField(81,272,18),createField(179,272,19),createField(279,272,20),createField(29,323,21),createField(180,323,22),createField(329,323,23));
 fieldArray.forEach(function(item,index,array){
@@ -56,6 +62,18 @@ fieldArray.forEach(function(item,index,array){
  turnColor = 'blue'
  
  //--------------------------------------------------------------------
+ 
+ //Don't allow to be PointTwo above PointOne
+ function createLine(myPointOneX,myPointOneY,myPointTwoX,myPointTwoY){
+    var line = new fabric.Line([0,0,myPointTwoX-myPointOneX,myPointTwoY-myPointOneY],{
+        left: myPointOneX+10,
+        top: myPointOneY+10,
+        stroke:'black',
+        selectable:false
+    });
+    return line;
+ };
+ 
 function createField(myLeft,myTop,fieldNumber){
     var circle = new fabric.Circle({
         radius:10,
